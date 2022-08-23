@@ -1,0 +1,61 @@
+package com.ruoyi.system.mapper;
+
+import java.util.List;
+import com.ruoyi.system.domain.TMedicalOutpatientdoctorResult;
+
+/**
+ * 医生看病结果Mapper接口
+ * 
+ * @author ruoyi
+ * @date 2022-08-23
+ */
+public interface TMedicalOutpatientdoctorResultMapper 
+{
+    /**
+     * 查询医生看病结果
+     * 
+     * @param opdoctorresultid 医生看病结果主键
+     * @return 医生看病结果
+     */
+    public TMedicalOutpatientdoctorResult selectTMedicalOutpatientdoctorResultByOpdoctorresultid(String opdoctorresultid);
+
+    /**
+     * 查询医生看病结果列表
+     * 
+     * @param tMedicalOutpatientdoctorResult 医生看病结果
+     * @return 医生看病结果集合
+     */
+    public List<TMedicalOutpatientdoctorResult> selectTMedicalOutpatientdoctorResultList(TMedicalOutpatientdoctorResult tMedicalOutpatientdoctorResult);
+
+    /**
+     * 新增医生看病结果
+     * 
+     * @param tMedicalOutpatientdoctorResult 医生看病结果
+     * @return 结果
+     */
+    public int insertTMedicalOutpatientdoctorResult(TMedicalOutpatientdoctorResult tMedicalOutpatientdoctorResult);
+
+    /**
+     * 修改医生看病结果
+     * 
+     * @param tMedicalOutpatientdoctorResult 医生看病结果
+     * @return 结果
+     */
+    public int updateTMedicalOutpatientdoctorResult(TMedicalOutpatientdoctorResult tMedicalOutpatientdoctorResult);
+
+    /**
+     * 删除医生看病结果
+     * 
+     * @param opdoctorresultid 医生看病结果主键
+     * @return 结果
+     */
+    public int deleteTMedicalOutpatientdoctorResultByOpdoctorresultid(String opdoctorresultid);
+
+    /**
+     * 批量删除医生看病结果
+     * 
+     * @param opdoctorresultids 需要删除的数据主键集合
+     * @return 结果
+     */
+    public int deleteTMedicalOutpatientdoctorResultByOpdoctorresultids(String[] opdoctorresultids);
+}

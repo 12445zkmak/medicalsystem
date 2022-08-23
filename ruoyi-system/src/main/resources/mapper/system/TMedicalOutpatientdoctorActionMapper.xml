@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TMedicalOutpatientdoctorActionMapper">
+    
+    <resultMap type="TMedicalOutpatientdoctorAction" id="TMedicalOutpatientdoctorActionResult">
+        <result property="id"    column="id"    />
+        <result property="partname"    column="partName"    />
+        <result property="partnumber"    column="partNumber"    />
+        <result property="persontype"    column="personType"    />
+        <result property="partmoney"    column="partMoney"    />
+        <result property="type"    column="type"    />
+        <result property="opdoctorreceiverecordid"    column="opDoctorReceiveRecordId"    />
+    </resultMap>
+
+    <sql id="selectTMedicalOutpatientdoctorActionVo">
+        select id, partName, partNumber, personType, partMoney, type, opDoctorReceiveRecordId from t_medical_outpatientdoctor_action
+    </sql>
+
+    <select id="selectTMedicalOutpatientdoctorActionList" parameterType="TMedicalOutpatientdoctorAction" resultMap="TMedicalOutpatientdoctorActionResult">
+        <include refid="selectTMedicalOutpatientdoctorActionVo"/>
+        <where>  
+            <if test="partname != null  and partname != ''"> and partName like concat('%', #{partname}, '%')</if>
+            <if test="partnumber != null "> and partNumber = #{partnumber}</if>
+            <if test="persontype != null "> and personType = #{persontype}</if>
+            <if test="partmoney != null "> and partMoney = #{partmoney}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="opdoctorreceiverecordid != null  and opdoctorreceiverecordid != ''"> and opDoctorReceiveRecordId = #{opdoctorreceiverecordid}</if>
+        </where>
+    </select>
+    
+    <select id="selectTMedicalOutpatientdoctorActionById" parameterType="String" resultMap="TMedicalOutpatientdoctorActionResult">
+        <include refid="selectTMedicalOutpatientdoctorActionVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTMedicalOutpatientdoctorAction" parameterType="TMedicalOutpatientdoctorAction">
+        insert into t_medical_outpatientdoctor_action
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="partname != null">partName,</if>
+            <if test="partnumber != null">partNumber,</if>
+            <if test="persontype != null">personType,</if>
+            <if test="partmoney != null">partMoney,</if>
+            <if test="type != null">type,</if>
+            <if test="opdoctorreceiverecordid != null">opDoctorReceiveRecordId,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="partname != null">#{partname},</if>
+            <if test="partnumber != null">#{partnumber},</if>
+            <if test="persontype != null">#{persontype},</if>
+            <if test="partmoney != null">#{partmoney},</if>
+            <if test="type != null">#{type},</if>
+            <if test="opdoctorreceiverecordid != null">#{opdoctorreceiverecordid},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTMedicalOutpatientdoctorAction" parameterType="TMedicalOutpatientdoctorAction">
+        update t_medical_outpatientdoctor_action
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="partname != null">partName = #{partname},</if>
+            <if test="partnumber != null">partNumber = #{partnumber},</if>
+            <if test="persontype != null">personType = #{persontype},</if>
+            <if test="partmoney != null">partMoney = #{partmoney},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="opdoctorreceiverecordid != null">opDoctorReceiveRecordId = #{opdoctorreceiverecordid},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTMedicalOutpatientdoctorActionById" parameterType="String">
+        delete from t_medical_outpatientdoctor_action where id = #{id}
+    </delete>
+
+    <delete id="deleteTMedicalOutpatientdoctorActionByIds" parameterType="String">
+        delete from t_medical_outpatientdoctor_action where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
